@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cleanup File</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#stuff').submit(function (event) {
+                    event.preventDefault();
+                    console.log('pressed');
+                    var file = $('input[type=file]').val();
+                    console.log(file);
+                    $.ajax({
+                        type: 'post',
+                        url: 'index.py',
+                        data: {'fileName' : file},
+                        success: function (response) {
+                            console.log(response);
+                        }
+                    });
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <h1>Chose file to clean</h1>
+        <br/>
+        <form id="stuff">
+            <input id="text" type="file" name="text" accept="*.txt">
+            <input id="submit" type="submit">
+        </form>
+    </body>
+</html>

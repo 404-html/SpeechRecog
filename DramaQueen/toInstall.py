@@ -1,0 +1,16 @@
+import os
+
+os.system("sudo apt update")
+os.system("sudo apt upgrade -y")
+os.system("sudo apt-get update")
+os.system("sudo apt-get upgrade -y")
+os.system("sudo apt-get install git pyttsx gTTS espeak python-pip python-dev build-essesntial python3-pip python-setuptools -y")
+os.system("sudo apt-get update")
+os.system("sudo apt-get install python-pyaudio python3-pyaudio portaudio19-dev python-all-dev python3-all-dev")
+os.system("sudo apt-get update")
+os.system("pip install pyaudio && pip3 install pyaudio")
+os.system("pip install SpeechRecognition && sudo pip3 install SpeechRecognition")
+os.system("pip3 install google_speech")
+os.system("sudo apt-get install sox libsox-fmt-mp3")
+os.system("sudo apt-get update")
+os.system("google_speech -l en 'Alright! Everything is done. . I hope!' -e speed 0.9")

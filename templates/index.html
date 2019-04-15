@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Break Up 355</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shoelace-css/1.0.0-beta16/shoelace.css">
+        <link rel="stylesheet" href="../static/styles.css">
+
+    </head>
+    <body>
+        <div class="container">
+
+            <h1>Break Up Convo</h1>           
+
+            <!-- <h3 class="no-browser-support">Sorry, Your Browser Doesn't Support the Web Speech API. Try Opening This Demo In Google Chrome.</h3> -->
+
+            <button id="start-record-btn" title="Start Recording">Start Recognition</button>
+                <button id="pause-record-btn" title="Pause Recording" >Pause Recognition</button>
+                <button id="send-record-btn" title="Pause Recording" >Send Request</button> 
+            <div class="app"> 
+                <div class="input-single">
+                    <textarea id="note-textarea" placeholder="Say or type a message" rows="6"></textarea>
+                    <div id='addText'>
+                    	 
+                    </div>
+                </div>
+                
+                                      	
+            </div>
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="../static/script.js"></script>
+
+        <!-- Only used for the demos ads. Please ignore and remove. --> 
+        <script src="https://cdn.tutorialzine.com/misc/enhance/v3.js" async></script>
+        <script>
+				$(document).ready(function(){
+					 
+					$("#send-record-btn").click( 
+					function(e) {
+						
+						data =  { 'speech': $('#note-textarea').val()}
+						temp = data['speech']
+						$('#note-textarea').val('')
+						$.ajax({
+							url: '/getSpeech',
+							type: 'POST',
+							contentType:"application/json",
+							dataType:"json",
+							data: JSON.stringify(data),
+							success: function (data){
+								var text = "<p style='border:1px solid black; margin-left:50px; '> <b>Me</b>:" + temp + ' </p>'
+                        		$('#addText').prepend(text)
+
+                                
+                                var timer = setInterval(function() {
+								    
+								    var voices = speechSynthesis.getVoices()
+								    if (voices.length !== 0) {
+								      var msg = new SpeechSynthesisUtterance(data['alexa']);
+								      msg.voice = voices[1];
+								      speechSynthesis.speak(msg);
+								      var text = "<p style='border:1px solid black; margin-left:50px;background-color:#ffefbf'> <b>Alexa</b>:" + data['alexa'] + ' </p>'
+                            	$('#addText').prepend(text)
+								      clearInterval(timer);
+								    }
+								}, 350);
+																
+                            },
+							error: function(err){
+								alert("Please type or say something:  " + err)
+							}
+						})
+					})			
+				});
+
+				
+			</script>
+    </body>
+</html>
+

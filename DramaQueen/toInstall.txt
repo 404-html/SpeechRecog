@@ -1,0 +1,7 @@
+https://pythonspot.com/en/speech-recognition-using-google-speech-api/
+https://pythonspot.com/en/speech-engines-with-python-tutorial/
+https://elementztechblog.wordpress.com/2015/01/22/using-speech-to-text-in-ubuntu/
+https://pyttsx.readthedocs.io/en/latest/engine.html
+https://pypi.python.org/pypi/google_speech/
+http://rwet.decontextualize.com/book/textblob/
+
